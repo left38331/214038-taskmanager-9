@@ -173,7 +173,7 @@ const getCardLayout = () => {
           </article>`;
 };
 
-const getAddCardLoyout = () => {
+const getAddCardLayout = () => {
   return `<article class="card card--edit card--black">
             <form class="card__form" method="get">
               <div class="card__inner">
@@ -429,13 +429,14 @@ const renderComponent = (container, layout) => {
 };
 
 const renderBoardContent = () => {
-  const tasksList = document.querySelector(`.board .board__tasks`);
+  const board = document.querySelector(`.board `);
+  const tasksList = board.querySelector(`.board__tasks`);
 
-  renderComponent(tasksList, getAddCardLoyout());
+  renderComponent(tasksList, getAddCardLayout());
   renderComponent(tasksList, getCardLayout());
   renderComponent(tasksList, getCardLayout());
   renderComponent(tasksList, getCardLayout());
-  renderComponent(tasksList, getButtonLayout());
+  renderComponent(board, getButtonLayout());
 };
 
 const renderAllComponents = () => {
