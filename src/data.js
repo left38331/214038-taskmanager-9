@@ -44,12 +44,12 @@ const allTaskConfig = getAllTaskConfig();
 
 const getCountViewFilters = (config) => {
   const countAllFilters = new Set();
-  let countFavoriteFilters;
-  let countArchiveFilters;
-  let countRepeatingFilters;
-  let countOverdueFilters;
-  let countTagFilters;
-  let countTodayFilters;
+  let countFavoriteFilters = 0;
+  let countArchiveFilters = 0;
+  let countRepeatingFilters = 0;
+  let countOverdueFilters = 0;
+  let countTagFilters = 0;
+  let countTodayFilters = 0;
 
   config.forEach(({isFavorite, isArchive, repeatingDays, dueDate, tags}) => {
     if (isFavorite) {
@@ -60,10 +60,8 @@ const getCountViewFilters = (config) => {
       countArchiveFilters++;
     }
 
-    for (let day in repeatingDays) {
-      if (repeatingDays[day] === true) {
-        countRepeatingFilters++;
-      }
+    if (Object.values(repeatingDays).some((dayValue) => dayValue) === true) {
+      countRepeatingFilters++;
     }
 
     if (tags.size > 0) {
