@@ -1,7 +1,7 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class Search {
+export default class Search {
   constructor() {
     this._element = null;
   }
@@ -33,6 +33,3 @@ class Search {
     `;
   }
 }
-
-export {Search};
-

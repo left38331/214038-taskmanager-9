@@ -1,7 +1,7 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class Filter {
+export default class Filter {
   constructor({title, count}) {
     this._title = title;
     this._count = count;
@@ -35,5 +35,3 @@ class Filter {
           `;
   }
 }
-
-export {Filter};

@@ -1,16 +1,16 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class TaskEdit {
+export default class TaskEdit {
   constructor({description, dueDate, repeatingDays, tags, color, isFavorite, isArchive}) {
     this._description = description;
     this._dueDate = new Date(dueDate);
     this._tags = tags;
     this._color = color;
-    this._element = null;
     this._repeatingDays = repeatingDays;
     this._isFavorite = isFavorite;
     this._isArchive = isArchive;
+    this._element = null;
   }
 
   getElement() {
@@ -209,5 +209,3 @@ class TaskEdit {
       `;
   }
 }
-
-export {TaskEdit};

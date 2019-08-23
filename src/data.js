@@ -35,7 +35,7 @@ const getTask = () => ({
 });
 
 const getAllTaskConfig = () => {
-  const TASK_COUNT = 19;
+  const TASK_COUNT = 0;
 
   return new Array(TASK_COUNT).fill(``).map(getTask);
 };

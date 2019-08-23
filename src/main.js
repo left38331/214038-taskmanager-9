@@ -2,14 +2,19 @@ import {allTaskConfig} from "./data";
 import {allFilterConfig} from "./data";
 import {Position} from "./utils";
 import {render} from "./utils";
-import {Menu} from "./components/site-menu";
-import {Filter} from "./components/filter";
-import {Board} from "./components/board";
-import {FilterContainer} from "./components/filter-container";
-import {Task} from "./components/card";
-import {TaskEdit} from "./components/card-edit";
-import {LoadMore} from "./components/button-load-more";
-import {Search} from "./components/search";
+import Menu from "./components/site-menu";
+import Filter from "./components/filter";
+import Board from "./components/board";
+import FilterContainer from "./components/filter-container";
+import Task from "./components/card";
+import TaskEdit from "./components/card-edit";
+import LoadMore from "./components/button-load-more";
+import Search from "./components/search";
+import SortFilter from "./components/sort-filter-container";
+import NoTask from "./components/no-task";
+import TaskContainer from "./components/board-task-container";
+
+const countTask = allTaskConfig.slice(0, allTaskConfig.length).length;
 
 const renderMenu = (container) => {
   const menu = new Menu();
@@ -35,10 +40,22 @@ const renderFilters = (container, filter) => {
   render(container, oneFilter.getElement(), Position.BEFOREEND);
 };
 
+const renderSortFilters = (container) => {
+  const sortFilter = new SortFilter();
+
+  render(container, sortFilter.getElement(), Position.AFTERBEGIN);
+};
+
 const renderBoard = (container) => {
   const board = new Board();
 
   render(container, board.getElement(), Position.BEFOREEND);
+};
+
+const renderTaskList = (container) => {
+  const taskContainer = new TaskContainer();
+
+  render(container, taskContainer.getElement(), Position.BEFOREEND);
 };
 
 const renderTask = (container, taskMock) => {
@@ -85,10 +102,16 @@ const renderTask = (container, taskMock) => {
   render(container, task.getElement(), Position.BEFOREEND);
 };
 
+const renderNoTask = (container) => {
+  const noTask = new NoTask();
+
+  render(container, noTask.getElement(), Position.BEFOREEND);
+};
+
 const renderLoadMore = (container, tasksList) => {
   const loadMore = new LoadMore();
 
-  loadMore.getElement().addEventListener(`click`, function () {
+  loadMore.getElement().addEventListener(`click`, () => {
     const newTasks = allTaskConfig.splice(0, 8);
 
     newTasks.forEach((taskMock) => renderTask(tasksList, taskMock));
@@ -117,10 +140,21 @@ const renderAllComponents = () => {
   renderBoard(mainContainer);
 
   const boardContainer = mainContainer.querySelector(`.board `);
-  const tasksList = mainContainer.querySelector(`.board__tasks`);
 
-  firstPartTasks.forEach((taskMock) => renderTask(tasksList, taskMock));
-  renderLoadMore(boardContainer, tasksList);
+  if (countTask === 0) {
+    renderNoTask(boardContainer);
+  } else {
+    renderSortFilters(boardContainer);
+    renderTaskList(boardContainer);
+
+    const tasksList = mainContainer.querySelector(`.board__tasks`);
+
+    firstPartTasks.forEach((taskMock) => renderTask(tasksList, taskMock));
+
+    if (countTask > 8) {
+      renderLoadMore(boardContainer, tasksList);
+    }
+  }
 };
 
 renderAllComponents();
