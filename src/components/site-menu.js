@@ -1,7 +1,7 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class Menu {
+export default class Menu {
   constructor() {
     this._element = null;
   }
@@ -53,6 +53,3 @@ class Menu {
             `;
   }
 }
-
-export {Menu};
-

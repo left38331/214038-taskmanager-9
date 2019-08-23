@@ -1,7 +1,7 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class LoadMore {
+export default class LoadMore {
   constructor() {
     this._element = null;
   }
@@ -23,5 +23,3 @@ class LoadMore {
     return `<button class="load-more" type="button">load more</button>`;
   }
 }
-
-export {LoadMore};

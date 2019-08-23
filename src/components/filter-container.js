@@ -1,7 +1,7 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-class FilterContainer {
+export default class FilterContainer {
   constructor() {
     this._element = null;
   }
@@ -23,6 +23,3 @@ class FilterContainer {
     return `<section class="main__filter filter container">`;
   }
 }
-
-export {FilterContainer};
-

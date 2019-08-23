@@ -1,9 +1,9 @@
 import {createElement} from "../utils";
 import {unrender} from "../utils";
 
-export default class Board {
+export default class NoTask {
   constructor() {
-    this._element = null;
+    this._elemen = null;
   }
 
   getElement() {
@@ -20,8 +20,9 @@ export default class Board {
   }
 
   getTemplate() {
-    return `<section class="board container">
-            </section>
-    `;
+    return `<p class="board__no-tasks">
+          Congratulations, all tasks were completed! To create a new click on
+          «add new task» button.
+        </p>`;
   }
 }
