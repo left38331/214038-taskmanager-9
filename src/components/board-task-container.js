@@ -1,26 +1,7 @@
-import {createElement} from "../utils";
-import {unrender} from "../utils";
+import AbstractComponent from "./absctract-component";
 
-export default class TaskContainer {
-  constructor() {
-    this._elemen = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate(), `firstElement`);
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    unrender(this._element);
-    this._element = null;
-  }
-
+export default class TaskContainer extends AbstractComponent {
   getTemplate() {
-    return `<div class="board__tasks">
-            </div>`;
+    return `<div class="board__tasks"></div>`;
   }
 }

@@ -3,7 +3,7 @@ const Position = {
   BEFOREEND: `beforeend`
 };
 
-const createElement = (template, numberElement) => {
+const createElement = (template, numberElement = `firstElement`) => {
   let newElement = document.createElement(`div`);
   newElement.innerHTML = template;
 
