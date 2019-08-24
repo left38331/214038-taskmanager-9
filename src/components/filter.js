@@ -1,24 +1,19 @@
+import AbstractComponent from "./absctract-component";
 import {createElement} from "../utils";
-import {unrender} from "../utils";
 
-export default class Filter {
+export default class Filter extends AbstractComponent {
   constructor({title, count}) {
+    super();
     this._title = title;
     this._count = count;
-    this._element = null;
   }
 
   getElement() {
     if (!this._element) {
-      this._element = createElement(this.getTemplate());
+      this._element = createElement(this.getTemplate(), `divWrap`);
     }
 
     return this._element;
-  }
-
-  removeElement() {
-    unrender(this._element);
-    this._element = null;
   }
 
   getTemplate() {
