@@ -1,4 +1,4 @@
-import {render, Position} from "../utils";
+import {render, Position, Sorting} from "../utils";
 import Board from "../components/board";
 import NoTask from "../components/no-task";
 import SortFilter from "../components/sort-filter-container";
@@ -106,16 +106,14 @@ export default class BoardController {
 
     this._taskList.getElement().innerHTML = ``;
 
-    switch (evt.target.text) {
-      case `SORT BY DATE up`:
-        const sortedByDateUpTasks = this._firtsPartTasks.slice().sort((a, b) => a.dueDate - b.dueDate);
-        sortedByDateUpTasks.forEach((taskMock) => this._renderTask(taskMock));
+    switch (evt.target.dataset.sort) {
+      case Sorting.DATE_UP:
+        this._firtsPartTasks.slice().sort((a, b) => a.dueDate - b.dueDate).forEach((taskMock) => this._renderTask(taskMock));
         break;
-      case `SORT BY DATE down`:
-        const sortedByDateDownTasks = this._firtsPartTasks.slice().sort((a, b) => b.dueDate - a.dueDate);
-        sortedByDateDownTasks.forEach((taskMock) => this._renderTask(taskMock));
+      case Sorting.DATE_DOWN:
+        this._firtsPartTasks.slice().sort((a, b) => b.dueDate - a.dueDate).forEach((taskMock) => this._renderTask(taskMock));
         break;
-      case `SORT BY DEFAULT`:
+      case Sorting.DEFAULT:
         this._firtsPartTasks.forEach((taskMock) => this._renderTask(taskMock));
         break;
     }
