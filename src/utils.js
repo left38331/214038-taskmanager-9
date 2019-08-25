@@ -3,6 +3,12 @@ const Position = {
   BEFOREEND: `beforeend`
 };
 
+const Sorting = {
+  DEFAULT: `default`,
+  DATE_UP: `date-up`,
+  DATE_DOWN: `date-down`
+};
+
 const createElement = (template, numberElement = `firstElement`) => {
   let newElement = document.createElement(`div`);
   newElement.innerHTML = template;
@@ -31,4 +37,4 @@ const unrender = (element) => {
   }
 };
 
-export {Position, createElement, render, unrender};
+export {Position, Sorting, createElement, render, unrender};
