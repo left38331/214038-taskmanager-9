@@ -4,7 +4,7 @@ export default class TaskEdit extends AbstractComponent {
   constructor({description, dueDate, repeatingDays, tags, color, isFavorite, isArchive}) {
     super();
     this._description = description;
-    this._dueDate = new Date(dueDate);
+    this._dueDate = dueDate;
     this._tags = tags;
     this._color = color;
     this._repeatingDays = repeatingDays;
@@ -48,7 +48,7 @@ export default class TaskEdit extends AbstractComponent {
               <div class="card__details">
                 <div class="card__dates">
                   <button class="card__date-deadline-toggle" type="button">
-                    date: <span class="card__date-status">${this._dueDate < Date.now() ? `yes` : `no`}</span>
+                    date: <span class="card__date-status">${this._dueDate !== `` ? `yes` : `no`}</span>
                   </button>
       
                   <fieldset class="card__date-deadline">
@@ -59,6 +59,7 @@ export default class TaskEdit extends AbstractComponent {
                         placeholder=""
                         name="date"
                         value="${new Date(this._dueDate).toDateString()} 11:15 PM"
+                        style="display: ${this._dueDate === `` ? `none` : `block`};"
                       />
                     </label>
                   </fieldset>
@@ -67,7 +68,7 @@ export default class TaskEdit extends AbstractComponent {
                     repeat:<span class="card__repeat-status">${Object.values(this._repeatingDays).some((item) => item) ? `yes` : `no`}</span>
                   </button>
       
-                  <fieldset class="card__repeat-days">
+                  <fieldset class="card__repeat-days" style="display: ${Object.values(this._repeatingDays).some((item) => item) ? `block` : `none`}">
                     <div class="card__repeat-days-inner">
                     ${Object.keys(this._repeatingDays).map((day) => `
                       <input class="visually-hidden card__repeat-day-input"
